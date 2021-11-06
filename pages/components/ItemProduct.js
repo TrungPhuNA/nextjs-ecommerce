@@ -24,13 +24,13 @@ const ItemProduct = ({item, classStyle}) => (
         </p>
     </div>
 )
-// export async function getStaticProps(context) {
-//     return {
-//         props: {
-//
-//         },
-//     }
-// }
+export async function getStaticProps(context) {
+    return {
+        props: {
+
+        },
+    }
+}
 
 
 export default ItemProduct;
