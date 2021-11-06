@@ -1,12 +1,10 @@
 import Master from './../layouts/Master'
-import Slider from 'react-slick';
 import {Container} from 'react-bootstrap';
 import './../../styles/Category.module.css'
-import axios from 'axios';
 import Link from 'next/link'
+import ItemProduct from '../components/ItemProduct';
 import ItemLoadingProduct from '../components/ItemLoadingProduct';
 import FilterRating from './include/filter_rating';
-import ItemProduct from '../components/ItemProduct';
 import ApiMicroService from '../api/api-service';
 
 export default function CategoryLists(
@@ -86,7 +84,7 @@ export default function CategoryLists(
                             </div>
                             <div className="lists">
                                     {productsNew.length > 0 ?  productsNew.map((item, index) => (
-                                        <ItemProduct item={item} key={index} classStyle="lists-item lists-item-4" />
+                                        <ItemProduct product={item} key={index} classStyle="lists-item lists-item-4" />
                                     )) :
                                     <div className="lists wrapper-cell" >
                                         {countLoading.map((item, index) => (

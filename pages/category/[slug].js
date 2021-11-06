@@ -4,7 +4,6 @@ import FilterRating from './include/filter_rating';
 import ItemProduct from '../components/ItemProduct';
 import ItemLoadingProduct from '../components/ItemLoadingProduct';
 import Master from '../layouts/Master';
-import axios from 'axios';
 import Head from 'next/head';
 import ApiMicroService from '../api/api-service';
 
@@ -81,7 +80,7 @@ const Category = (
                     <div className="content">
                         <div className="lists">
                             {productsNew.length > 0 ?  productsNew.map((item, index) => (
-                                    <ItemProduct item={item} key={index} classStyle="lists-item lists-item-4" />
+                                    <ItemProduct product={item} key={index} classStyle="lists-item lists-item-4" />
                                 )) :
                                 <div className="lists wrapper-cell" >
                                     {countLoading.map((item, index) => (
@@ -125,8 +124,8 @@ const Category = (
 
 export const getStaticPaths = async (params) => {
     let paths = [];
-    const responseCategory = await axios.get(
-        `https://cms.123code.net/api/categories`
+    const responseCategory = await ApiMicroService.get(
+        `/api/categories`
     )
     const categoriesHot = responseCategory.data.data.categories;
     if (categoriesHot.length > 0 )

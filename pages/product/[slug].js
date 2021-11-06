@@ -161,7 +161,7 @@ function ProductDetail(
                     <div className="content">
                         <div className="lists">
                             {productsNew.length > 0 ?  productsNew.map((item, index) => (
-                                    <ItemProduct item={item} key={index} classStyle="lists-item lists-item-6" />
+                                    <ItemProduct product={item} key={index} classStyle="lists-item lists-item-6" />
                                 )) :
                                 <div className="lists wrapper-cell" >
                                     {countLoading.map((item, index) => (

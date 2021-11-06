@@ -2,7 +2,6 @@ import Master from './../layouts/Master'
 import {Container} from 'react-bootstrap';
 import ItemProduct from '../components/ItemProduct';
 import ItemLoadingProduct from '../components/ItemLoadingProduct';
-import axios from 'axios';
 import Link from 'next/link';
 import ApiMicroService from '../api/api-service';
 export default function Product(
