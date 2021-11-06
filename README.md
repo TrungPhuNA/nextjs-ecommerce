@@ -7,3 +7,5 @@ npm run dev
 yarn dev
 ```
 "start": "next start",
+"dev": "next dev -p 3005",
+"start": "next start",
