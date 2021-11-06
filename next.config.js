@@ -5,6 +5,6 @@ module.exports = {
   distDir: 'build',
   presets: ["next/babel"],
   sassOptions:{
-    includePaths:[path.join(__dirname,"styles")]
+    includePaths:[path.join(__dirname,"/styles")]
   }
 }
