@@ -142,7 +142,7 @@ export async function getStaticProps(context) {
         `https://cms.123code.net/api/products?limit=10`
     )
     const productsNew = responseProducts.data.data.products;
-
+    console.log('---- categoriesHot: ', categoriesHot);
     return {
         props: {
             categoriesHot,
