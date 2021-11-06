@@ -17,14 +17,22 @@ const Category = (
         <Container>
             <div className="breadcrumb mt-3">
                 <ul>
-                    <li><a itemProp="url" href="/" title="Home"><span
-                        itemProp="title">Trang chủ</span></a></li>
-                    <li><a itemProp="url"
-                           href=""
-                           title="Sản phẩm"><span
-                        itemProp="title">Sản phẩm</span></a></li>
-                    <li><a itemProp="url" href="" title="Đồng hồ Diamond D"><span
-                        itemProp="title">C</span></a></li>
+                    <li>
+                        <Link href="/">
+                            <a itemProp="url" title="Home"><span
+                                itemProp="title">Trang chủ</span></a>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/product">
+                            <a itemProp="url"
+                               title="Sản phẩm"><span
+                                itemProp="title">Sản phẩm</span></a>
+                        </Link>
+                    </li>
+                    <li>
+                        <span itemProp="title">C</span>
+                    </li>
                 </ul>
             </div>
         </Container>
@@ -72,7 +80,7 @@ const Category = (
                     <div className="content">
                         <div className="lists">
                             {productsNew.length > 0 ?  productsNew.map((item, index) => (
-                                    <ItemProduct item={item} classStyle="lists-item lists-item-4" />
+                                    <ItemProduct item={item} key={index} classStyle="lists-item lists-item-4" />
                                 )) :
                                 <div className="lists wrapper-cell" >
                                     {countLoading.map((item, index) => (
@@ -120,7 +128,7 @@ export const getStaticPaths = async () => {
 
     return {
         paths: [],
-        fallback: 'blocking'
+        fallback: false
     }
 }
 

@@ -3,6 +3,7 @@ import {Container} from 'react-bootstrap';
 import ItemProduct from '../components/ItemProduct';
 import ItemLoadingProduct from '../components/ItemLoadingProduct';
 import axios from 'axios';
+import Link from 'next/link';
 export default function Product(
     {productsNew}
 ) {
@@ -11,14 +12,22 @@ export default function Product(
             <Container>
                 <div className="breadcrumb mt-3">
                     <ul>
-                        <li><a itemProp="url" href="/" title="Home"><span
-                            itemProp="title">Trang chủ</span></a></li>
-                        <li><a itemProp="url"
-                               href=""
-                               title="Sản phẩm"><span
-                            itemProp="title">Sản phẩm</span></a></li>
-                        <li><a itemProp="url" href="" title="Đồng hồ Diamond D"><span
-                            itemProp="title">Chi tiết sản phẩm</span></a></li>
+                        <li>
+                            <Link href="/">
+                                <a itemProp="url" title="Home"><span
+                                    itemProp="title">Trang chủ</span></a>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/product">
+                                <a itemProp="url"
+                                   title="Sản phẩm"><span
+                                    itemProp="title">Sản phẩm</span></a>
+                            </Link>
+                        </li>
+                        <li>
+                            <span itemProp="title">C</span>
+                        </li>
                     </ul>
                 </div>
             </Container>
@@ -27,18 +36,18 @@ export default function Product(
                     <div className="thumb d-flex">
                         <div className="left d-flex flex-md-column">
                             <div className="mb-2">
-                                <img src="/sp1.jpeg" alt=""/>
+                                <img src="/sp1.jpeg" alt="1"/>
                             </div>
                             <div className="mb-2">
-                                <img src="/sp2.jpeg" alt=""/>
+                                <img src="/sp2.jpeg" alt="2"/>
                             </div>
                             <div className="mb-2">
-                                <img src="/sp3.jpeg" alt=""/>
+                                <img src="/sp3.jpeg" alt="3"/>
                             </div>
                         </div>
                         <div className="right">
                             <div>
-                                <img src="/sp3.jpeg" alt=""/>
+                                <img src="/sp3.jpeg" alt="2"/>
                             </div>
                         </div>
                     </div>
@@ -64,11 +73,11 @@ export default function Product(
                                     <p className="label">Số Lượng</p>
                                     <div className="group-input">
                                         <button>
-                                            <img src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg" />
+                                            <img src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg" alt="1"/>
                                         </button>
                                         <input type="text"  className="input" />
                                         <button>
-                                            <img src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg" />
+                                            <img src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg" alt="1" />
                                         </button>
                                     </div>
                                 </div>
@@ -77,7 +86,7 @@ export default function Product(
                                 <div className="shop-box">
                                     <div className="">
                                         <a className="overview d-flex align-items-center " href="https://tiki.vn/cua-hang/hangshoes">
-                                            <img src="https://vcdn.tikicdn.com/cache/w100/ts/seller/4b/54/1a/f385a79a716cb3505f152e7af8c769aa.png" alt=""/>
+                                            <img src="https://vcdn.tikicdn.com/cache/w100/ts/seller/4b/54/1a/f385a79a716cb3505f152e7af8c769aa.png" alt="1"/>
                                             <span className="seller-name"><span>Hăngshoes</span></span>
                                         </a>
                                         <div className="seller-detail d-flex" style={{minHeight: "40px"}}>
@@ -108,14 +117,14 @@ export default function Product(
                                             <a className="action"
                                                data-view-id="pdp_store_seller.view"
                                                href="https://tiki.vn/cua-hang/hangshoes">
-                                                <img src="https://salt.tikicdn.com/ts/upload/49/27/ff/d735c33edfdc6cf6aeb6e183bec28869.png" />
+                                                <img src="https://salt.tikicdn.com/ts/upload/49/27/ff/d735c33edfdc6cf6aeb6e183bec28869.png" alt="1" />
                                                 <span>Xem Shop</span>
                                            </a>
                                             <div
                                                 data-view-id="pdp_store_seller.follow"
                                                 className="action follow"
                                                 data-view-label="101161">
-                                                <img src="https://salt.tikicdn.com/ts/upload/5b/bf/3c/eeda00767e26b5873030e44f951441c4.png" />
+                                                <img src="https://salt.tikicdn.com/ts/upload/5b/bf/3c/eeda00767e26b5873030e44f951441c4.png" alt="1" />
                                                 <span>Theo Dõi</span>
                                             </div>
                                         </div>

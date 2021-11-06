@@ -16,14 +16,22 @@ export default function CategoryLists(
             <Container>
                 <div className="breadcrumb mt-3">
                     <ul>
-                        <li><a itemProp="url" href="/" title="Home"><span
-                            itemProp="title">Trang chủ</span></a></li>
-                        <li><a itemProp="url"
-                               href=""
-                               title="Sản phẩm"><span
-                            itemProp="title">Sản phẩm</span></a></li>
-                        <li><a itemProp="url" href="" title="Đồng hồ Diamond D"><span
-                            itemProp="title">C</span></a></li>
+                        <li>
+                            <Link href="/">
+                                <a itemProp="url" title="Home"><span
+                                    itemProp="title">Trang chủ</span></a>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/product">
+                                <a itemProp="url"
+                                   title="Sản phẩm"><span
+                                    itemProp="title">Sản phẩm</span></a>
+                            </Link>
+                        </li>
+                        <li>
+                            <span itemProp="title">C</span>
+                        </li>
                     </ul>
                 </div>
             </Container>
