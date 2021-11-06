@@ -1,6 +1,7 @@
 import Master from './layouts/Master'
 import {Container} from 'react-bootstrap';
-import Link from 'next/link'
+import Link from 'next/link';
+import Router from 'next/router';
 
 import "slick-carousel/slick/slick.css";
 import "./../styles/Home.module.css";
@@ -10,6 +11,7 @@ import ApiMicroService from './api/api-service';
 
 import ItemLoadingProduct from './components/ItemLoadingProduct';
 import ItemProduct from './components/ItemProduct';
+import Slide from './home/include/Slide';
 
 const settings = {
     dots: false,
@@ -76,8 +78,22 @@ const slideImages = [
 export default function Home(
     { categoriesHot, productsNew, countLoading }
 ) {
+    const handleClickSearch = () => {
+        console.log('click search');
+        Router.push('/search')
+        // return NextResponse.redirect('/search')
+    }
     return (
         <Master>
+            <div className="search-header-mb">
+                <div className="box-search">
+                    <input type="text" onClick={handleClickSearch} className="form-control" placeholder="Bạn tìm gì hôm nay"/>
+                    <span className="icon-search">
+                        <img src="/icon/icon-search.png" alt="Icon search"/>
+                    </span>
+                </div>
+            </div>
+            <Slide/>
             <Container>
                 <div className="home-category mt-3">
                     <div className="lists">
