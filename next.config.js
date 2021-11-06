@@ -3,4 +3,5 @@ module.exports = {
   modern: true,
   experimental: { esmExternals: true },
   distDir: 'build',
+  presets: ["next/babel"]
 }
