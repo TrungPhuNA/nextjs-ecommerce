@@ -186,7 +186,7 @@ export const getStaticPaths = async () => {
     const paths = productsNew.map((pro) => ({
         params: { slug: pro.slug },
     }));
-
+    console.log(paths);
     return {
         paths,
         fallback: false
