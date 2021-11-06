@@ -161,10 +161,14 @@ export default function Product(
 }
 
 export async function getStaticProps(context) {
-    const responseProducts = await ApiMicroService.get(
-        `/api/products?limit=12`
-    )
-    const productsNew = responseProducts.data.data.products;
+    let productsNew = [];
+    try {
+        const responseProducts = await ApiMicroService.get(`/api/products?limit=10`)
+        productsNew = responseProducts.data.data.products;
+    }catch (e) {
+        console.log(" ----- e: ", e);
+    }
+
     return {
         props: {
             productsNew

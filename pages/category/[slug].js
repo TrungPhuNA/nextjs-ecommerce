@@ -6,6 +6,7 @@ import ItemLoadingProduct from '../components/ItemLoadingProduct';
 import Master from '../layouts/Master';
 import axios from 'axios';
 import Head from 'next/head';
+import ApiMicroService from '../api/api-service';
 
 const Category = (
     {categoriesHot, productsNew}
@@ -123,14 +124,18 @@ const Category = (
 )
 
 export const getStaticPaths = async (params) => {
+    let paths = [];
     const responseCategory = await axios.get(
         `https://cms.123code.net/api/categories`
     )
     const categoriesHot = responseCategory.data.data.categories;
+    if (categoriesHot.length > 0 )
+    {
+        paths = categoriesHot.map((cate) => ({
+            params: { slug: cate.slug },
+        }));
+    }
 
-    const paths = categoriesHot.map((cate) => ({
-        params: { slug: cate.slug },
-    }));
 
     return {
         paths,
@@ -139,15 +144,20 @@ export const getStaticPaths = async (params) => {
 }
 
 export async function getStaticProps(context) {
-    const responseCategory = await axios.get(
-        `https://cms.123code.net/api/categories`
-    )
-    const categoriesHot = responseCategory.data.data.categories;
+    let categoriesHot , productsNew = [];
+    try {
+        const responseCategory = await ApiMicroService.get(`/api/categories`)
+        categoriesHot = responseCategory.data.data.categories;
+    }catch (e) {
+        console.log(" ----- e: ", e);
+    }
 
-    const responseProducts = await axios.get(
-        `https://cms.123code.net/api/products?limit=10`
-    )
-    const productsNew = responseProducts.data.data.products;
+    try {
+        const responseProducts = await ApiMicroService.get(`/api/products?limit=10`)
+        productsNew = responseProducts.data.data.products;
+    }catch (e) {
+        console.log(" ----- e: ", e);
+    }
     return {
         props: {
             categoriesHot,

@@ -132,15 +132,20 @@ export default function CategoryLists(
 }
 
 export async function getStaticProps(context) {
-    const responseCategory = await ApiMicroService.get(
-        `/api/categories`
-    )
-    const categoriesHot = responseCategory.data.data.categories;
+    let categoriesHot , productsNew = [];
+    try {
+        const responseCategory = await ApiMicroService.get(`/api/categories`)
+        categoriesHot = responseCategory.data.data.categories;
+    }catch (e) {
+        console.log(" ----- e: ", e);
+    }
 
-    const responseProducts = await ApiMicroService.get(
-        `/api/products?limit=10`
-    )
-    const productsNew = responseProducts.data.data.products;
+    try {
+        const responseProducts = await ApiMicroService.get(`/api/products?limit=10`)
+        productsNew = responseProducts.data.data.products;
+    }catch (e) {
+        console.log(" ----- e: ", e);
+    }
 
     return {
         props: {

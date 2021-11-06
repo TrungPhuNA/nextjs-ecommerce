@@ -255,12 +255,20 @@ export default function Home(
 }
 
 export async function getStaticProps(context) {
+    let categoriesHot , productsNew = [];
+    try {
+        const responseCategory = await ApiMicroService.get(`/api/categories`)
+        categoriesHot = responseCategory.data.data.categories;
+    }catch (e) {
+        console.log(" ----- e: ", e);
+    }
 
-    const responseCategory = await ApiMicroService.get(`/api/categories`)
-    const categoriesHot = responseCategory.data.data.categories;
-
-    const responseProducts = await ApiMicroService.get(`/api/products?limit=10`)
-    const productsNew = responseProducts.data.data.products;
+    try {
+        const responseProducts = await ApiMicroService.get(`/api/products?limit=10`)
+        productsNew = responseProducts.data.data.products;
+    }catch (e) {
+        console.log(" ----- e: ", e);
+    }
 
     const countLoading = [
         {
