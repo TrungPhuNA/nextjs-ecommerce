@@ -3,5 +3,8 @@ module.exports = {
   modern: true,
   swcMinify: false,
   experimental: { esmExternals: true },
-  distDir: 'build'
+  distDir: 'build',
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 }

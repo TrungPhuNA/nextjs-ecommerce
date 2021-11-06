@@ -36,6 +36,13 @@ function ProductDetail(
                             </Link>
                         </li>
                         <li>
+                            <Link href="/category">
+                                <a itemProp="url"
+                                   title="Sản phẩm"><span
+                                    itemProp="title">Danh mục</span></a>
+                            </Link>
+                        </li>
+                        <li>
                             <span itemProp="title">C</span>
                         </li>
                     </ul>
