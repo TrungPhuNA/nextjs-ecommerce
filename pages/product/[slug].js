@@ -6,13 +6,14 @@ import ItemProduct from '../components/ItemProduct';
 import ItemLoadingProduct from '../components/ItemLoadingProduct';
 import axios from 'axios';
 import Link from 'next/link';
+import ApiMicroService from '../api/api-service';
 
 function ProductDetail(
     {productsNew, productDetail}
 ) {
     const router = useRouter();
     const slug = router.query.slug
-    console.log('---- slug: ', slug);
+
     return (
         <Master>
             <Head>
@@ -177,21 +178,29 @@ function ProductDetail(
 }
 
 export const getStaticPaths = async () => {
-
-    return {
-        paths: [],
-        fallback: true
-    }
-}
-
-export async function getStaticProps({ params }) {
     const responseProducts = await axios.get(
         `https://cms.123code.net/api/products?limit=12`
     )
     const productsNew = responseProducts.data.data.products;
+
+    const paths = productsNew.map((pro) => ({
+        params: { slug: pro.slug },
+    }));
+
+    return {
+        paths,
+        fallback: false
+    }
+}
+
+export async function getStaticProps({ params }) {
+    const responseProducts = await ApiMicroService.get(
+        `/api/products?limit=12`
+    )
+    const productsNew = responseProducts.data.data.products;
     const slug = params.slug;
-    const responseProductDetail = await axios.get(
-        `https://cms.123code.net/api/products/${slug}`
+    const responseProductDetail = await ApiMicroService.get(
+        `/api/products/${slug}`
     )
     const productDetail = responseProductDetail.data.data.product;
     return {

@@ -88,8 +88,6 @@ const Category = (
                                     ))}
                                 </div>
                             }
-
-                            {/*<ItemProduct />*/}
                         </div>
                     </div>
                 </div>
@@ -124,11 +122,19 @@ const Category = (
     </Master>
 )
 
-export const getStaticPaths = async () => {
+export const getStaticPaths = async (params) => {
+    const responseCategory = await axios.get(
+        `https://cms.123code.net/api/categories`
+    )
+    const categoriesHot = responseCategory.data.data.categories;
+
+    const paths = categoriesHot.map((cate) => ({
+        params: { slug: cate.slug },
+    }));
 
     return {
-        paths: [],
-        fallback: true
+        paths,
+        fallback: false
     }
 }
 
@@ -142,7 +148,6 @@ export async function getStaticProps(context) {
         `https://cms.123code.net/api/products?limit=10`
     )
     const productsNew = responseProducts.data.data.products;
-    console.log('---- categoriesHot: ', categoriesHot);
     return {
         props: {
             categoriesHot,

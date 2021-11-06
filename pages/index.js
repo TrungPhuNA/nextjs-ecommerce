@@ -6,7 +6,8 @@ import "slick-carousel/slick/slick.css";
 import "./../styles/Home.module.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import axios from 'axios';
+import ApiMicroService from './api/api-service';
+
 import ItemLoadingProduct from './components/ItemLoadingProduct';
 import ItemProduct from './components/ItemProduct';
 
@@ -80,7 +81,7 @@ export default function Home(
             <Container>
                 <div className="home-category mt-3">
                     <div className="lists">
-                        {categoriesHot.map((item, index) => (
+                        {categoriesHot.length > 0 ? categoriesHot.map((item, index) => (
                             <div className="lists-item" key={index}>
                                 <Link href={`/category/${item.slug}`} as={`/category/${item.slug}`}>
                                     <a title="Thời trang phụ kiện">
@@ -89,7 +90,7 @@ export default function Home(
                                     </a>
                                 </Link>
                             </div>
-                        ))}
+                        )) : ''}
                     </div>
                 </div>
             </Container>
@@ -254,35 +255,16 @@ export default function Home(
 }
 
 export async function getStaticProps(context) {
-    const responseCategory = await axios.get(
-        `https://cms.123code.net/api/categories`
-    )
+
+    const responseCategory = await ApiMicroService.get(`/api/categories`)
     const categoriesHot = responseCategory.data.data.categories;
 
-    const responseProducts = await axios.get(
-        `https://cms.123code.net/api/products?limit=10`
-    )
+    const responseProducts = await ApiMicroService.get(`/api/products?limit=10`)
     const productsNew = responseProducts.data.data.products;
-    // console.log('------ productsNew: ', productsNew);
-    // const  productsNew = [];
+
     const countLoading = [
         {
             'id' : 1
-        },
-        {
-            'id' : 2
-        },
-        {
-            'id' : 3
-        },
-        {
-            'id' : 4
-        },
-        {
-            'id' : 5
-        },
-        {
-            'id' : 6
         }
     ]
     return {

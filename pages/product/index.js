@@ -4,6 +4,7 @@ import ItemProduct from '../components/ItemProduct';
 import ItemLoadingProduct from '../components/ItemLoadingProduct';
 import axios from 'axios';
 import Link from 'next/link';
+import ApiMicroService from '../api/api-service';
 export default function Product(
     {productsNew}
 ) {
@@ -160,8 +161,8 @@ export default function Product(
 }
 
 export async function getStaticProps(context) {
-    const responseProducts = await axios.get(
-        `https://cms.123code.net/api/products?limit=12`
+    const responseProducts = await ApiMicroService.get(
+        `/api/products?limit=12`
     )
     const productsNew = responseProducts.data.data.products;
     return {
@@ -170,9 +171,3 @@ export async function getStaticProps(context) {
         },
     }
 }
-
-// export async function getStaticPaths() {
-//     return {
-//         fallback: false
-//     }
-// }

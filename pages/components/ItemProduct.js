@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import axios from 'axios';
 
 const ItemProduct = ({item, classStyle}) => (
     <div className={classStyle}>
@@ -24,13 +25,5 @@ const ItemProduct = ({item, classStyle}) => (
         </p>
     </div>
 )
-export async function getStaticProps(context) {
-    return {
-        props: {
-
-        },
-    }
-}
-
 
 export default ItemProduct;

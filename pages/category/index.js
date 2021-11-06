@@ -7,6 +7,7 @@ import Link from 'next/link'
 import ItemLoadingProduct from '../components/ItemLoadingProduct';
 import FilterRating from './include/filter_rating';
 import ItemProduct from '../components/ItemProduct';
+import ApiMicroService from '../api/api-service';
 
 export default function CategoryLists(
     {categoriesHot,productsNew}
@@ -42,13 +43,13 @@ export default function CategoryLists(
                             <div className="box-title">Danh mục sản phẩm</div>
                             <div className="box-content">
                                 <ul>
-                                    {categoriesHot.map((item, index) => (
+                                    {categoriesHot.length > 0 ? categoriesHot.map((item, index) => (
                                         <li key={index}>
                                             <Link href="/category">
                                                 <a  title={item.name}>{item.name}</a>
                                             </Link>
                                         </li>
-                                    ))}
+                                    )) : ''}
                                 </ul>
                             </div>
                         </div>
@@ -131,13 +132,13 @@ export default function CategoryLists(
 }
 
 export async function getStaticProps(context) {
-    const responseCategory = await axios.get(
-        `https://cms.123code.net/api/categories`
+    const responseCategory = await ApiMicroService.get(
+        `/api/categories`
     )
     const categoriesHot = responseCategory.data.data.categories;
 
-    const responseProducts = await axios.get(
-        `https://cms.123code.net/api/products?limit=10`
+    const responseProducts = await ApiMicroService.get(
+        `/api/products?limit=10`
     )
     const productsNew = responseProducts.data.data.products;
 
