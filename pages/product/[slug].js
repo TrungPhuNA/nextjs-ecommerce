@@ -7,12 +7,27 @@ import ItemLoadingProduct from '../components/ItemLoadingProduct';
 import axios from 'axios';
 import Link from 'next/link';
 import ApiMicroService from '../api/api-service';
+import {useState} from 'react';
 
 function ProductDetail(
     {productsNew, productDetail}
 ) {
-    const router = useRouter();
-    const slug = router.query.slug
+    const [quantity, setQuantity] = useState(1);
+
+    const increasingQuantity = () => {
+        if (quantity >= 20) {
+            setQuantity(20);
+            return
+        }
+        setQuantity(quantity + 1);
+    }
+    const reduceQuantity = () => {
+        if (quantity === 1) {
+            setQuantity(quantity);
+            return
+        }
+        setQuantity(quantity - 1);
+    }
 
     return (
         <Master>
@@ -69,7 +84,7 @@ function ProductDetail(
                         </div>
                     </div>
                     <div className="info mt-2">
-                        <h1>Đồ án website chương trình giảm giá bằng laravel - Đồ án tốt nghiệp</h1>
+                        <h1>{productDetail.pro_name}</h1>
                         <p className="item-start">
                                 <span>
                                     <strong className="active"><i className="fa fa-star"></i></strong>
@@ -89,11 +104,11 @@ function ProductDetail(
                                 <div className="box-qty">
                                     <p className="label">Số Lượng</p>
                                     <div className="group-input">
-                                        <button>
+                                        <button onClick={reduceQuantity} className={quantity === 1 ? 'disabled' : ''}>
                                             <img src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-remove.svg" alt="icon" />
                                         </button>
-                                        <input type="text"  className="input" />
-                                        <button>
+                                        <input type="text"  className="input"  value={quantity} />
+                                        <button onClick={increasingQuantity} className={quantity >= 20 ? 'disabled' : ''}>
                                             <img src="https://frontend.tikicdn.com/_desktop-next/static/img/pdp_revamp_v2/icons-add.svg" alt="icon" />
                                         </button>
                                     </div>

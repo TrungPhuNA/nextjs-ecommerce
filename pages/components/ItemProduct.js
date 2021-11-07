@@ -1,6 +1,7 @@
 import Link from 'next/link';
-
+import { formatMoney } from "./../helpers/function";
 const ItemProduct = ({product, classStyle}) => {
+    console.log('--- prod: ', product);
     if (!product) return  null;
     return (
         <div className={classStyle}>
@@ -15,8 +16,8 @@ const ItemProduct = ({product, classStyle}) => {
                 </Link>
             </h4>
             <p className="item-price">
-                <span>2.000.000 đ</span>
-                <span className="item-price-discount">-20%</span>
+                <span>{formatMoney(product.price)} đ</span>
+                {product.sale ? <span className="item-price-discount">-{product.sale}%</span> : ''}
             </p>
             <p className="item-start">
             <span>
