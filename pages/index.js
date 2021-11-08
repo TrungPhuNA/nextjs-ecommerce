@@ -1,7 +1,7 @@
 import Master from './layouts/Master'
 import {Container} from 'react-bootstrap';
 import Link from 'next/link';
-import Router from 'next/router';
+import { Router, useRouter } from "next/router";
 
 import "slick-carousel/slick/slick.css";
 import "./../styles/Home.module.css";
@@ -78,10 +78,9 @@ const slideImages = [
 export default function Home(
     { categoriesHot, productsNew, countLoading }
 ) {
+    
     const handleClickSearch = () => {
-        console.log('click search');
         Router.push('/search')
-        // return NextResponse.redirect('/search')
     }
     return (
         <Master>
@@ -97,7 +96,7 @@ export default function Home(
             <Container>
                 <div className="home-category mt-3">
                     <div className="lists">
-                        {categoriesHot.length > 0 ? categoriesHot.map((item, index) => (
+                        {categoriesHot ? categoriesHot.map((item, index) => (
                             <div className="lists-item" key={index}>
                                 <Link href={`/category/${item.slug}`} as={`/category/${item.slug}`}>
                                     <a title="Thời trang phụ kiện">
@@ -106,7 +105,11 @@ export default function Home(
                                     </a>
                                 </Link>
                             </div>
-                        )) : ''}
+                        )) :
+                            <div>
+                                <h2>Cannot load Category Hot</h2>
+                            </div>
+                        }
                     </div>
                 </div>
             </Container>
