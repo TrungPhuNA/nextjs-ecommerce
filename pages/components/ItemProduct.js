@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { formatMoney } from "./../helpers/function";
 const ItemProduct = ({product, classStyle}) => {
-    console.log('--- prod: ', product);
     if (!product) return  null;
     return (
         <div className={classStyle}>
