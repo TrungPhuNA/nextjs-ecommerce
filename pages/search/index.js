@@ -12,7 +12,7 @@ export default function Search(){
             <div className="box-header-mb d-flex justify-content-between align-content-center align-items-center">
                 <div className="left">
                     <a title="" onClick={handleBackUrl} className="fa fa-angle-left"></a>
-                    <Link href="/">
+                    <Link href="/" passHref>
                         <a title="" className="fa fa-bars"></a>
                     </Link>
                 </div>
@@ -23,7 +23,7 @@ export default function Search(){
                     </span>
                 </div>
                 <div className="right">
-                    <Link href="/">
+                    <Link href="/" passHref>
                         <img src="/icon/icon-cart.svg" alt="Icon Cart"/>
                     </Link>
                 </div>

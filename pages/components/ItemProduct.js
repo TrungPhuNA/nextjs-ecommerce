@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { formatMoney } from "./../helpers/function";
+import formatMoney  from "./../helpers/function";
 const ItemProduct = ({product, classStyle}) => {
     if (!product) return  null;
     return (
